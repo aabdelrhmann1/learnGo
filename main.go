@@ -48,11 +48,12 @@ func main(){
 		AllowCredentials: false,
 		MaxAge:           300,
 	}))
-	
+
 	v1Router := chi.NewRouter()
 	v1Router.Get("/healthz", handlerReadiness)
 	v1Router.Get("/err", handlerErr)
 	v1Router.Post("/users", apiCfg.handlerCreateUser)
+	v1Router.Get("/users", apiCfg.handlerGetUserByAPIKey)
 
 	router.Mount("/v1", v1Router)
 
